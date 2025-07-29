@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@layer components {
+    .dot-loader span {
+        background-color: var(--color-gray-300) !important;
+    }
+}
