@@ -30,8 +30,7 @@ export const GoogleLoginButton = ({ className }: { className?: string }) => {
                         },
                     }
                 );
-
-                localStorage.setItem("user_email", response.data.email);
+                
                 localStorage.setItem("user_name", response.data.name);
                 localStorage.setItem("user_picture", response.data.picture);
             } catch (error) {
