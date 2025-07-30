@@ -88,7 +88,6 @@ export default function App() {
     const [errorMassage, setErrorMessage] = useState("");
     const googleToken = localStorage.getItem("google_token");
     const userData = {
-        email: localStorage.getItem("user_email"),
         name: localStorage.getItem("user_name"),
         picture: localStorage.getItem("user_picture"),
     };
@@ -320,8 +319,11 @@ export default function App() {
                     <section className="z-999 w-screen h-screen fixed bottom-0 left-0 bg-black/20">
                         <div className="w-full h-full flex items-center justify-center relative">
                             <span className="px-10 py-8 bg-gray-100 border-gray-200 border-2 rounded-xl flex flex-col items-center justify-center gap-4">
-                                <h1 className="text-lg">
-                                    Apakah anda yakin ingin keluar?
+                                <h1 className="text-lg text-center">
+                                    <strong className="text-gray-800">
+                                        {userData.name}
+                                    </strong>
+                                    , Apakah anda yakin <br /> ingin keluar?
                                 </h1>
                                 <span className="w-full flex items-center justify-center gap-4">
                                     <button
@@ -359,11 +361,13 @@ export default function App() {
                                         className="text-center text-red-500 text-md px-5 lg:px-6 py-2 h-fit lg:h-11 border-red-400 border-1 z-1 bg-red-100 hover:bg-red-200 transition duration-100 ease-out cursor-pointer rounded-md flex items-center justify-center gap-2"
                                     >
                                         Keluar
-                                        <img
-                                            src={userData.picture || ""}
-                                            alt={userData.name || ""}
-                                            className="size-6 rounded-full border-gray-400 border-1 flex items-center justify-center oveflow-hidden"
-                                        />
+                                        <span className="size-6 rounded-full border-gray-400 border-1 flex items-center justify-center overflow-hidden">
+                                            <img
+                                                src={userData.picture || ""}
+                                                alt={userData.name || ""}
+                                                className="size-full"
+                                            />
+                                        </span>
                                     </button>
                                 )}
                             </span>
@@ -436,14 +440,16 @@ export default function App() {
                                                     {channelData.name}
                                                 </p>
                                             </span>
-                                            <img
-                                                src={
-                                                    channelData.thumbnail ||
-                                                    "/no-image.jpg"
-                                                }
-                                                alt={channelData?.title}
-                                                className="h-16 w-24 rounded-sm"
-                                            />
+                                            <span className="h-16 w-24 flex items-center justify-center overflow-hidden rounded-sm border-gray-300 border-1">
+                                                <img
+                                                    src={
+                                                        channelData.thumbnail ||
+                                                        "/no-image.jpg"
+                                                    }
+                                                    alt={channelData?.title}
+                                                    className="h-full w-full"
+                                                />
+                                            </span>
                                         </span>
                                         <span className="w-full grow relative min-h-24 bg-gray-200 overflow-hidden rounded-md flex items-center justify-center">
                                             {isLoading && (
@@ -505,16 +511,18 @@ export default function App() {
                                                                             }
                                                                         </p>
                                                                     </span>
-                                                                    <img
-                                                                        src={
-                                                                            comment.authorProfileImage ||
-                                                                            "/unknown.jpg"
-                                                                        }
-                                                                        alt={
-                                                                            comment.author
-                                                                        }
-                                                                        className="rounded-full size-10 border-gray-400 border-1 flex flex-shrink-0 items-center overflow-hidden"
-                                                                    />
+                                                                    <span className="rounded-full size-10 border-gray-400 border-1 flex flex-shrink-0 items-center justify-center overflow-hidden">
+                                                                        <img
+                                                                            src={
+                                                                                comment.authorProfileImage ||
+                                                                                "/unknown.jpg"
+                                                                            }
+                                                                            alt={
+                                                                                comment.author
+                                                                            }
+                                                                            className="size-full"
+                                                                        />
+                                                                    </span>
                                                                 </span>
                                                             );
                                                         }
