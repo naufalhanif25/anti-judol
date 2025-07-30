@@ -4,6 +4,7 @@ import axios, { AxiosError } from "axios";
 import { ClipLoader, PulseLoader } from "react-spinners";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GoogleLoginButton } from "./components/google-login";
+import { Popup } from "./components/popup";
 
 type YTVideoComment = {
     id: string;
@@ -316,32 +317,28 @@ export default function App() {
         <GoogleOAuthProvider clientId={import.meta.env.VITE_OAUTH_CLIENT_ID}>
             <main className="flex items-center justify-center w-screen h-screen px-[6%] lg:px-[12%] py-[6%]">
                 {openAlertPopup && (
-                    <section className="z-999 w-screen h-screen fixed bottom-0 left-0 bg-black/20">
-                        <div className="w-full h-full flex items-center justify-center relative">
-                            <span className="px-10 py-8 bg-gray-100 border-gray-200 border-2 rounded-xl flex flex-col items-center justify-center gap-4">
-                                <h1 className="text-lg text-center">
-                                    <strong className="text-gray-800">
-                                        {userData.name}
-                                    </strong>
-                                    , Apakah anda yakin <br /> ingin keluar?
-                                </h1>
-                                <span className="w-full flex items-center justify-center gap-4">
-                                    <button
-                                        onClick={handleLogout}
-                                        className="flex-1 text-center text-green-100 py-2 bg-green-500 hover:bg-green-400 transition duration-100 ease-out cursor-pointer rounded-md"
-                                    >
-                                        Ya
-                                    </button>
-                                    <button
-                                        onClick={() => setOpenAlertPopup(false)}
-                                        className="flex-1 text-center text-red-100 py-2 bg-red-500 hover:bg-red-400 transition duration-100 ease-out cursor-pointer rounded-md"
-                                    >
-                                        Tidak
-                                    </button>
-                                </span>
-                            </span>
-                        </div>
-                    </section>
+                    <Popup className="px-10 py-8 bg-gray-100 border-gray-200 border-2 rounded-xl flex flex-col items-center justify-center gap-4">
+                        <h1 className="text-center">
+                            <strong className="text-gray-800">
+                                {userData.name}
+                            </strong>
+                            , Apakah anda yakin <br /> ingin keluar?
+                        </h1>
+                        <span className="w-full flex items-center justify-center gap-4">
+                            <button
+                                onClick={handleLogout}
+                                className="flex-1 text-center text-green-100 py-2 bg-green-500 hover:bg-green-400 transition duration-50 ease-out cursor-pointer rounded-md"
+                            >
+                                Ya
+                            </button>
+                            <button
+                                onClick={() => setOpenAlertPopup(false)}
+                                className="flex-1 text-center text-red-100 py-2 bg-red-500 hover:bg-red-400 transition duration-100 ease-out cursor-pointer rounded-md"
+                            >
+                                Tidak
+                            </button>
+                        </span>
+                    </Popup>
                 )}
                 <section className="w-full h-full relative rounded-3xl flex items-center justify-center border-gray-200 border-2 overflow-hidden">
                     <div className="flex flex-col items-start lg:items-center justify-center w-full h-full bg-gray-100 p-6 lg:p-8 gap-6 lg:gap-8 overflow-y-auto overflow-x-hidden scroll-smooth">
