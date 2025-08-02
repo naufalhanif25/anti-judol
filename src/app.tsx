@@ -460,7 +460,7 @@ export default function App() {
                                                                 <span
                                                                     key={
                                                                         comment.id ||
-                                                                        index
+                                                                        `comment-${index}`
                                                                     }
                                                                     className={`flex w-full items-center p-3 gap-4 transition duration-100 ease-out ${
                                                                         commnetsStatus[
