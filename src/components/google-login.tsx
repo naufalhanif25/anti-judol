@@ -3,10 +3,11 @@ import { GoogleIcon } from "./icons";
 import axios, { AxiosError } from "axios";
 import { useState } from "react";
 import { MoonLoader } from "react-spinners";
-import { ChevronDown } from "lucide-react";
 import { PrivacyPolicy } from "./privacy-policy";
 import { TermsOfService } from "./terms-of-service";
+import { AboutUs } from "./aboutus";
 import { Popup } from "./popup";
+import { Dropdown } from "./dropdown";
 
 type UserData = {
     email: string;
@@ -22,6 +23,7 @@ export const GoogleLoginButton = ({ className }: { className?: string }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [privacyPolicyOpen, setPrivacyPolicyOpen] = useState(false);
     const [termsOfServiceOpen, setTermsOfServiceOpen] = useState(false);
+    const [aboutUsOpen, setAboutUsOpen] = useState(false);
     const [isAgree, setIsAgree] = useState(false);
     const [openPopup, setOpenPopup] = useState(false);
 
@@ -71,6 +73,11 @@ export const GoogleLoginButton = ({ className }: { className?: string }) => {
         else setTermsOfServiceOpen(true);
     };
 
+    const handleAboutUsClick = () => {
+        if (aboutUsOpen) setAboutUsOpen(false);
+        else setAboutUsOpen(true);
+    }
+
     const handleAgreeButtonClick = () => {
         if (isAgree) setIsAgree(false);
         else setIsAgree(true);
@@ -91,72 +98,77 @@ export const GoogleLoginButton = ({ className }: { className?: string }) => {
                                 Persetujuan Pengguna
                             </h1>
                             <span className="gap-2 w-full h-full flex flex-col items-center justify-center">
-                                <span
+                                <Dropdown
+                                    onClick={handlePrivacyPolicyOpen}
                                     className={`${
                                         privacyPolicyOpen ? "gap-2" : "gap-0"
                                     } transition-[gap] duration-250 ease-out flex flex-col items-center justify-center w-full h-fit`}
+                                    title="Kebijakan Privasi"
+                                    iconClass={`${
+                                        privacyPolicyOpen
+                                            ? "-rotate-z-180"
+                                            : "rotate-z-0"
+                                    } transition duration-250 ease-out`}
                                 >
-                                    <button
-                                        onClick={handlePrivacyPolicyOpen}
-                                        className="w-full text-left bg-gray-200 p-4 gap-4 rounded-md flex items-center justify-between cursor-pointer"
-                                    >
-                                        Kebijakan Privasi (Privacy Policy)
-                                        <ChevronDown
-                                            strokeWidth={1.6}
-                                            className={`${
-                                                privacyPolicyOpen
-                                                    ? "-rotate-z-180"
-                                                    : "rotate-z-0"
-                                            } transition duration-250 ease-out`}
-                                        />
-                                    </button>
                                     <PrivacyPolicy
                                         className={`w-full ${
                                             privacyPolicyOpen
-                                                ? "h-48 py-4 opacity-100"
+                                                ? "h-42 py-4 opacity-100"
                                                 : "h-0 py-0 opacity-0"
                                         } transition-[height padding-bottom padding-top opacity] duration-250 ease-out px-4 border-gray-200 border-2 rounded-md overflow-y-auto overflow-x-hidden text-md text-justify`}
                                     />
-                                </span>
-                                <span
+                                </Dropdown>
+                                <Dropdown
+                                    onClick={handleTermsOfServiceOpen}
                                     className={`${
                                         termsOfServiceOpen ? "gap-2" : "gap-0"
                                     } transition-[gap] duration-250 ease-out flex flex-col items-center justify-center w-full h-fit`}
+                                    title="Syarat & Ketentuan Layanan"
+                                    iconClass={`${
+                                        termsOfServiceOpen
+                                            ? "-rotate-z-180"
+                                            : "rotate-z-0"
+                                    } transition duration-250 ease-out`}
                                 >
-                                    <button
-                                        onClick={handleTermsOfServiceOpen}
-                                        className="w-full text-left bg-gray-200 p-4 gap-4 rounded-md flex items-center justify-between cursor-pointer"
-                                    >
-                                        Syarat & Ketentuan Layanan (Terms of
-                                        Service)
-                                        <ChevronDown
-                                            strokeWidth={1.6}
-                                            className={`${
-                                                termsOfServiceOpen
-                                                    ? "-rotate-z-180"
-                                                    : "rotate-z-0"
-                                            } transition duration-250 ease-out`}
-                                        />
-                                    </button>
                                     <TermsOfService
                                         className={`w-full ${
                                             termsOfServiceOpen
-                                                ? "h-48 py-4 opacity-100"
+                                                ? "h-42 py-4 opacity-100"
                                                 : "h-0 py-0 opacity-0"
                                         } transition-[height padding-bottom padding-top opacity] duration-250 ease-out px-4 border-gray-200 border-2 rounded-md overflow-y-auto overflow-x-hidden text-md text-justify`}
                                     />
-                                </span>
-                            </span>
-                            <span className="w-full flex items-center justfy-start gap-4">
-                                <span
-                                    onClick={handleAgreeButtonClick}
-                                    className="size-5 flex-shrink-0 border-gray-400 border-1 rounded-sm cursor-pointer p-0.5 flex items-center justify-center"
+                                </Dropdown>
+                                <Dropdown
+                                    onClick={handleAboutUsClick}
+                                    className={`${
+                                        aboutUsOpen ? "gap-2" : "gap-0"
+                                    } transition-[gap] duration-250 ease-out flex flex-col items-center justify-center w-full h-fit`}
+                                    title="Tentang Kami"
+                                    iconClass={`${
+                                        aboutUsOpen
+                                            ? "-rotate-z-180"
+                                            : "rotate-z-0"
+                                    } transition duration-250 ease-out`}
                                 >
+                                    <AboutUs
+                                        className={`w-full ${
+                                            aboutUsOpen
+                                                ? "h-42 py-4 opacity-100"
+                                                : "h-0 py-0 opacity-0"
+                                        } transition-[height padding-bottom padding-top opacity] duration-250 ease-out px-4 border-gray-200 border-2 rounded-md overflow-y-auto overflow-x-hidden text-md text-justify`}
+                                    />
+                                </Dropdown>
+                            </span>
+                            <span
+                                onClick={handleAgreeButtonClick}
+                                className="w-full flex items-center justfy-start gap-4 cursor-pointer"
+                            >
+                                <span className="size-5 flex-shrink-0 border-gray-400 border-1 rounded-sm p-0.5 flex items-center justify-center">
                                     {isAgree && (
                                         <span className="size-full bg-green-400 rounded-xs"></span>
                                     )}
                                 </span>
-                                <p className="text-sm text-gray-600">
+                                <p className="text-sm text-gray-600 select-none">
                                     Saya setuju dengan Kebijakan Privasi serta
                                     Syarat & Ketentuan yang berlaku
                                 </p>
