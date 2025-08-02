@@ -1,21 +1,39 @@
+import type { ReactNode } from "react";
+
 export const Point = ({
+    className,
+    list,
+}: {
+    className?: string;
+    list: string[] | ReactNode[];
+}) => {
+    return (
+        <ul className={className}>
+            {list.map((item, index) => {
+                return <li key={`list-${index}`}>{item}</li>;
+            })}
+        </ul>
+    );
+};
+
+export const TreePoint = ({
     title,
     intro,
     list,
+    headFontClass,
+    listClass,
 }: {
-    title: string;
+    title?: string;
     intro?: string;
     list: string[];
+    headFontClass?: string;
+    listClass?: string;
 }) => {
     return (
-        <li className="font-medium">
-            <strong className="font-medium">{title}</strong>
+        <li className={headFontClass}>
+            {title && <strong className={headFontClass}>{title}</strong>}
             {intro && <p className="font-normal">{intro}</p>}
-            <ul className="font-normal list-disc ml-4">
-                {list.map((item) => {
-                    return <li>{item}</li>;
-                })}
-            </ul>
+            <Point className={listClass} list={list} />
         </li>
     );
 };
@@ -23,13 +41,15 @@ export const Point = ({
 export const Paragraph = ({
     title,
     paragraph,
+    headFontClass,
 }: {
-    title: string;
+    title?: string;
     paragraph: string;
+    headFontClass?: string;
 }) => {
     return (
-        <li className="font-medium">
-            <strong className="font-medium">{title}</strong>
+        <li className={headFontClass}>
+            {title && <strong className={headFontClass}>{title}</strong>}
             <p className="font-normal">{paragraph}</p>
         </li>
     );
