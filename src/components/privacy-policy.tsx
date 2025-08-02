@@ -4,7 +4,7 @@ export const PrivacyPolicy = ({ className }: { className: string }) => {
     return (
         <span className={className}>
             <strong className="font-medium">
-                Terakhir diperbarui: 30 Juli 2025
+                Terakhir diperbarui: 2 Agustus 2025
             </strong>
             <br />
             <br />
@@ -13,7 +13,9 @@ export const PrivacyPolicy = ({ className }: { className: string }) => {
             <br />
             <br />
             <ol className="list-decimal ml-4">
-                <CustomList.Point
+                <CustomList.TreePoint
+                    headFontClass="font-medium"
+                    listClass="font-normal list-disc ml-4"
                     title="Informasi yang Kami Kumpulkan"
                     intro="Kami mengumpulkan informasi berikut saat Anda menggunakan Anti Judol:"
                     list={[
@@ -22,7 +24,9 @@ export const PrivacyPolicy = ({ className }: { className: string }) => {
                         "Data Video dan Komentar YouTube: Kami mengakses data video, komentar, dan informasi channel yang relevan menggunakan YouTube Data API v3.",
                     ]}
                 />
-                <CustomList.Point
+                <CustomList.TreePoint
+                    headFontClass="font-medium"
+                    listClass="font-normal list-disc ml-4"
                     title="Cara Kami Menggunakan Informasi Anda"
                     intro="Informasi yang kami kumpulkan digunakan untuk:"
                     list={[
@@ -31,7 +35,9 @@ export const PrivacyPolicy = ({ className }: { className: string }) => {
                         "Menyediakan antarmuka untuk mendeteksi dan menghapus komentar yang terindikasi sebagai spam atau promosi judi online.",
                     ]}
                 />
-                <CustomList.Point
+                <CustomList.TreePoint
+                    headFontClass="font-medium"
+                    listClass="font-normal list-disc ml-4"
                     title="Penyimpanan dan Keamanan Data"
                     list={[
                         "Kami tidak menyimpan data video, komentar, atau data pribadi pengguna secara permanen.",
@@ -40,12 +46,15 @@ export const PrivacyPolicy = ({ className }: { className: string }) => {
                     ]}
                 />
                 <CustomList.Paragraph
+                    headFontClass="font-medium"
                     title="Berbagi Informasi"
                     paragraph="Kami tidak menjual, menyewakan, atau membagikan informasi pribadi Anda kepada pihak ketiga."
                 />
-                <CustomList.Point
+                <CustomList.TreePoint
+                    headFontClass="font-medium"
+                    listClass="font-normal list-disc ml-4"
                     title="Hak Anda"
-                    intro="Anda dapat:"
+                    intro="Anda memiliki hak untuk:"
                     list={[
                         "Memutus akses akun Google Anda kapan saja.",
                         "Meminta penghapusan data sesi Anda.",
@@ -53,6 +62,7 @@ export const PrivacyPolicy = ({ className }: { className: string }) => {
                     ]}
                 />
                 <CustomList.Paragraph
+                    headFontClass="font-medium"
                     title="Kepatuhan terhadap Kebijakan Google"
                     paragraph="Anti Judol sepenuhnya mematuhi kebijakan Google API Services User Data Policy, termasuk prinsip penggunaan data yang minimal dan hanya untuk tujuan yang disebutkan di atas."
                 />
